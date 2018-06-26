@@ -5,6 +5,7 @@ const type = {
 }
 
 const size = {
+  headline: 48,
   h1: 38,
   h2: 34,
   h3: 30,
@@ -19,6 +20,10 @@ const size = {
 }
 
 const style = {
+  headline: {
+    fontFamily: type.bold,
+    fontSize: size.headline
+  },
   h1: {
     fontFamily: type.base,
     fontSize: size.h1

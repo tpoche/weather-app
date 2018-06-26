@@ -1,5 +1,6 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
+import AppConfig from '../Config/AppConfig'
 
 // our "constructor"
 const create = (baseURL = 'https://api.github.com/') => {
@@ -37,6 +38,11 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
+  const getCurrentWeather = (zip) => {
+    const apiKey = AppConfig.apiKey;
+    console.log(`Api.getCurrentWeather: zip=${zip}, APPID=${apiKey}`)
+    return api.get('', {zip: zip, APPID: apiKey});
+  }
 
   // ------
   // STEP 3
@@ -54,7 +60,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     // a list of the API functions from step 2
     getRoot,
     getRate,
-    getUser
+    getUser,
+    getCurrentWeather
   }
 }
 

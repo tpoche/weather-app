@@ -20,5 +20,14 @@ export default {
       ok: true,
       data: username.toLowerCase() === 'gantman' ? gantmanData : skellockData
     }
+  },
+  getCurrentWeather: (zip) => {
+    console.log(`FixtureAPI.getCurrentWeather: zip=${zip}`);
+    const weatherData = require('../Fixtures/currentWeather.json')
+    console.log(`Creating JSON payload from: ${JSON.stringify(weatherData)}`)
+    return {
+      ok: true,
+      data: weatherData
+    }
   }
 }

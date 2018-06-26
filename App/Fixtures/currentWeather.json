@@ -1,0 +1,41 @@
+{
+    "coord": {
+        "lon": -92.06,
+        "lat": 30.18
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 300.53,
+        "pressure": 1016,
+        "humidity": 100,
+        "temp_min": 299.15,
+        "temp_max": 301.15
+    },
+    "wind": {
+        "speed": 4.77,
+        "deg": 178.001
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1529894100,
+    "sys": {
+        "type": 1,
+        "id": 1158,
+        "message": 0.0036,
+        "country": "US",
+        "sunrise": 1529924899,
+        "sunset": 1529975613
+    },
+    "id": 420014775,
+    "name": "Lafayette",
+    "cod": 200
+}
