@@ -16,7 +16,7 @@ export function * getCurrentWeather (api, action) {
     const condition = weatherArray[0].main
     console.log(`Parsed current=${currentTemp}, high=${highTemp}, low=${lowTemp}, condition=${condition}`)
     // do data conversion here if needed
-    yield put(OpenWeatherActions.currentWeatherSuccess(currentTemp, highTemp, lowTemp, condition))
+    yield put(OpenWeatherActions.currentWeatherSuccess(highTemp, lowTemp, currentTemp, condition))
   } else {
     yield put(OpenWeatherActions.currentWeatherFailure())
   }

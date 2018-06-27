@@ -3,8 +3,6 @@ import { ScrollView, Text, KeyboardAvoidingView, View, Button } from 'react-nati
 import { connect } from 'react-redux'
 import WeatherIcon from '../Components/WeatherIcon'
 import OpenWeatherActions from '../Redux/OpenWeatherRedux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
 
 // Styles
 import styles from './Styles/HomeScreenStyle'
@@ -37,16 +35,12 @@ class HomeScreen extends Component {
 
   onPressForecast () {
     console.log('User tapped the Forecast button!');
-    // const { nav } = this.props
-    // console.log(`nav: ${JSON.stringify(nav)}`);
-    console.log(`this.props.nav: ${JSON.stringify(this.props.nav)}`)
     this.props.navigation.navigate('ForecastScreen')
-    // nav.navigate('ForecastScreen')
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(`mapStateToProps with state=${JSON.stringify(state)}`)
+  // console.log(`mapStateToProps with state=${JSON.stringify(state)}`)
   return {
     high: state.openWeather.high,
     low: state.openWeather.low,

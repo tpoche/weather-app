@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, Button, FlatList, View } from 'react-native'
+import { ScrollView, Text, KeyboardAvoidingView, FlatList, View } from 'react-native'
 import { connect } from 'react-redux'
 import { path } from 'ramda'
 import moment from 'moment'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import WeatherIcon from '../Components/WeatherIcon'
 import OpenWeatherActions from '../Redux/OpenWeatherRedux'
 import convertFromKelvin from '../Transforms/ConvertFromKelvin'
@@ -23,7 +22,6 @@ class ForecastScreen extends Component {
   }
 
   renderItem = ({ item }) => {
-    console.log(`renderItem: item=${JSON.stringify(item)}`)
     const date = moment(new Date(item.dt * 1000));
     const today = moment(Date.now()).startOf('day');
     var dateString = "";
@@ -34,16 +32,9 @@ class ForecastScreen extends Component {
     }
     const timeString = date.format('h A');
     const dateTimeString = `${dateString} @ ${timeString}`;
-    // const dateString = date.toLocaleDateString();
-    // const timeString = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
-    // const dateTimeString = moment(date).format('dddd, MMMM D') //`${dateString} ${timeString}`;
-    console.log(`dateTimeString=${dateTimeString}`);
     const description = item.weather[0].main;
-    console.log(`description=${description}`);
     const highTemp = convertFromKelvin(path(['main', 'temp_max'], item));
-    console.log(`highTemp=${highTemp}`);
     const lowTemp = convertFromKelvin(path(['main', 'temp_min'], item));
-    console.log(`lowTemp=${lowTemp}`);
 
     return (
       <View style={[styles.container, {flexDirection: 'row', paddingLeft: 10, paddingRight: 10}]}>
