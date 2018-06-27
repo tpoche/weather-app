@@ -7,15 +7,29 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  ForecastScreen: { screen: ForecastScreen },
-  HomeScreen: { screen: HomeScreen },
+  ForecastScreen: { 
+    screen: ForecastScreen,
+    navigationOptions: () => ({
+      title: '5 Day Forecast',
+      headerBackTitle: 'Back'
+    }),
+   },
+  HomeScreen: { 
+    screen: HomeScreen,
+    navigationOptions: () => ({
+      title: 'Weather App'
+    }),
+  },
   LaunchScreen: { screen: LaunchScreen }
 }, {
   // Default config for all screens
-  headerMode: 'none',
+  headerMode: 'float',
   initialRouteName: 'HomeScreen',
   navigationOptions: {
-    headerStyle: styles.header
+    headerStyle: styles.header,
+    headerTitleStyle: styles.headerTitle,
+    headerBackTitleStyle: styles.headerTitle,
+    headerTintColor: 'white'
   }
 })
 

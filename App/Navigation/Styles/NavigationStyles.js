@@ -3,6 +3,9 @@ import { Colors } from '../../Themes/'
 
 export default StyleSheet.create({
   header: {
-    backgroundColor: Colors.backgroundColor
+    backgroundColor: Colors.babyblue
+  },
+  headerTitle: {
+    color: Colors.snow
   }
 })

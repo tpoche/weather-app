@@ -6,7 +6,7 @@ export default StyleSheet.create({
   groupContainer: ApplicationStyles.groupContainer,
   title: {
     ...Fonts.style.normal,
-    paddingVertical: Metrics.doubleBaseMargin,
+    paddingVertical: Metrics.baseMargin,
     color: Colors.coal,
     marginVertical: Metrics.smallMargin,
     textAlign: 'center'

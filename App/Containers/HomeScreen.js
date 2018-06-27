@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, KeyboardAvoidingView, View, Button } from 'react-native'
 import { connect } from 'react-redux'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import WeatherIcon from '../Components/WeatherIcon'
 import OpenWeatherActions from '../Redux/OpenWeatherRedux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -28,7 +27,7 @@ class HomeScreen extends Component {
           </View>
           <WeatherIcon condition={condition} size={250} color='black' />          
           <Text style={styles.sectionTitle}>{`${current}ºF`}</Text>
-          <View style={{paddingTop: 50}}>
+          <View style={{paddingTop: 30}}>
             <Button title="Forecast" onPress={this.onPressForecast.bind(this)} />
           </View>
         </KeyboardAvoidingView>

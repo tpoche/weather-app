@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { ScrollView, Text, KeyboardAvoidingView, Button, FlatList, View } from 'react-native'
 import { connect } from 'react-redux'
 import { path } from 'ramda'
+import moment from 'moment'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import WeatherIcon from '../Components/WeatherIcon'
 import OpenWeatherActions from '../Redux/OpenWeatherRedux'
 import convertFromKelvin from '../Transforms/ConvertFromKelvin'
@@ -22,10 +24,19 @@ class ForecastScreen extends Component {
 
   renderItem = ({ item }) => {
     console.log(`renderItem: item=${JSON.stringify(item)}`)
-    const date = new Date(item.dt * 1000);
-    const dateString = date.toLocaleDateString();
-    const timeString = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
-    const dateTimeString = `${dateString} ${timeString}`;
+    const date = moment(new Date(item.dt * 1000));
+    const today = moment(Date.now()).startOf('day');
+    var dateString = "";
+    if (date.diff(today, 'days') === 0) {
+      dateString = "Today";     
+    } else {
+      dateString = date.format('dddd, MMMM D');
+    }
+    const timeString = date.format('h A');
+    const dateTimeString = `${dateString} @ ${timeString}`;
+    // const dateString = date.toLocaleDateString();
+    // const timeString = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
+    // const dateTimeString = moment(date).format('dddd, MMMM D') //`${dateString} ${timeString}`;
     console.log(`dateTimeString=${dateTimeString}`);
     const description = item.weather[0].main;
     console.log(`description=${description}`);
@@ -35,15 +46,15 @@ class ForecastScreen extends Component {
     console.log(`lowTemp=${lowTemp}`);
 
     return (
-      <View style={[styles.container, {backgroundColor: 'white', flexDirection: 'row', paddingLeft: 10, paddingRight: 10}]}>
+      <View style={[styles.container, {flexDirection: 'row', paddingLeft: 10, paddingRight: 10}]}>
         <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', width: '60%'}}>
-          <Text>{dateTimeString}</Text>
-          <Text style={{color: 'lightgray'}}>{description}</Text>
+          <Text style={styles.cellTitle}>{dateTimeString}</Text>
+          <Text style={styles.cellSubtitle}>{description}</Text>
         </View>
         <WeatherIcon style={{width: '20%'}} condition={description} size={50} color='black' />
         <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '20%'}}>
-          <Text>{`${highTemp} º`}</Text>
-          <Text style={{color: 'lightgray'}}>{`${lowTemp} º`}</Text>
+          <Text style={styles.cellTitle}>{`${highTemp} º`}</Text>
+          <Text style={styles.cellSubtitle}>{`${lowTemp} º`}</Text>
         </View>
       </View>
     );
@@ -60,8 +71,6 @@ class ForecastScreen extends Component {
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.groupContainer} behavior='position'>
-          <Text>Forecast Screen</Text>
-          <Button title='Back' onPress={this.onBackPress.bind(this)} />
           <FlatList 
             data={ (list && list.length > 0) ? list : []}
             renderItem={this.renderItem}
