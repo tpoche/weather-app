@@ -12,10 +12,25 @@ export function * getCurrentWeather (api, action) {
     const currentTemp = convertFromKelvin(path(['data', 'main', 'temp'], response))
     const highTemp = convertFromKelvin(path(['data', 'main', 'temp_max'], response))
     const lowTemp = convertFromKelvin(path(['data', 'main', 'temp_min'], response))
-    console.log(`Parsed current=${currentTemp}, high=${highTemp}, low=${lowTemp}`)
+    const weatherArray = path(['data', 'weather'], response)
+    const condition = weatherArray[0].main
+    console.log(`Parsed current=${currentTemp}, high=${highTemp}, low=${lowTemp}, condition=${condition}`)
     // do data conversion here if needed
-    yield put(OpenWeatherActions.currentWeatherSuccess(currentTemp, highTemp, lowTemp))
+    yield put(OpenWeatherActions.currentWeatherSuccess(currentTemp, highTemp, lowTemp, condition))
   } else {
     yield put(OpenWeatherActions.currentWeatherFailure())
+  }
+}
+
+export function * getForecast (api, action) {
+  const { zipcode } = action
+  const response = yield call(api.getForecast, zipcode)
+  console.log(`Received forecast response: ${JSON.stringify(response)}`)
+  if (response.ok) {
+    // const cnt = path(['data', 'cnt'], response)
+    const list = path(['data', 'list'], response)
+    yield put(OpenWeatherActions.forecastSuccess(list))
+  } else {
+    yield put(OpenWeatherActions.forecastFailure())
   }
 }

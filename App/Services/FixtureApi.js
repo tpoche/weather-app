@@ -23,11 +23,19 @@ export default {
   },
   getCurrentWeather: (zip) => {
     console.log(`FixtureAPI.getCurrentWeather: zip=${zip}`);
-    const weatherData = require('../Fixtures/currentWeather.json')
+    const weatherData = require('../Fixtures/currentWeather.json');
     console.log(`Creating JSON payload from: ${JSON.stringify(weatherData)}`)
     return {
       ok: true,
       data: weatherData
+    }
+  },
+  getForecast: (zip) => {
+    console.log(`FixtureAPI.getForecast for zip=${zip}`);
+    const forecastData = require('../Fixtures/forecast5day.json');
+    return {
+      ok: true,
+      data: forecastData
     }
   }
 }

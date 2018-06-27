@@ -26,7 +26,14 @@ class ReduxNavigation extends React.Component {
   }
 
   render () {
-    return <AppNavigation navigation={addNavigationHelpers({ dispatch: this.props.dispatch, state: this.props.nav, addListener: createReduxBoundAddListener('root') })} />
+    return <AppNavigation 
+              navigation={
+                addNavigationHelpers({ 
+                  dispatch: this.props.dispatch, 
+                  state: this.props.nav, 
+                  addListener: createReduxBoundAddListener('root') 
+                })} 
+            />
   }
 }
 

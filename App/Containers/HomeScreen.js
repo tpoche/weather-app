@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, Text, KeyboardAvoidingView, View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import WeatherIcon from '../Components/WeatherIcon'
 import OpenWeatherActions from '../Redux/OpenWeatherRedux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -16,19 +17,19 @@ class HomeScreen extends Component {
   }
 
   render () {
-    const { high, low, current } = this.props;
+    const { high, low, current, condition } = this.props;
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.groupContainer} behavior='position'>
           <Text style={styles.title}>The current weather for Lafayette, LA</Text>
           <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-            <Text>{`High: ${high}`}</Text>
-            <Text>{`Low: ${low}`}</Text>
+            <Text>{`High: ${high}º`}</Text>
+            <Text>{`Low: ${low}º`}</Text>
           </View>
-          <Icon name='weather-sunny' size={250} color='black' />          
-          <Text style={styles.sectionTitle}>{`${current} ºF`}</Text>
+          <WeatherIcon condition={condition} size={250} color='black' />          
+          <Text style={styles.sectionTitle}>{`${current}ºF`}</Text>
           <View style={{paddingTop: 50}}>
-            <Button title="Forecast" onPress={this.onPressForecast} />
+            <Button title="Forecast" onPress={this.onPressForecast.bind(this)} />
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
@@ -37,6 +38,11 @@ class HomeScreen extends Component {
 
   onPressForecast () {
     console.log('User tapped the Forecast button!');
+    // const { nav } = this.props
+    // console.log(`nav: ${JSON.stringify(nav)}`);
+    console.log(`this.props.nav: ${JSON.stringify(this.props.nav)}`)
+    this.props.navigation.navigate('ForecastScreen')
+    // nav.navigate('ForecastScreen')
   }
 }
 
@@ -45,7 +51,8 @@ const mapStateToProps = (state) => {
   return {
     high: state.openWeather.high,
     low: state.openWeather.low,
-    current: state.openWeather.current
+    current: state.openWeather.current,
+    condition: state.openWeather.condition
   }  
 }
 

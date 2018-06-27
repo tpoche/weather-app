@@ -41,7 +41,13 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getCurrentWeather = (zip) => {
     const apiKey = AppConfig.apiKey;
     console.log(`Api.getCurrentWeather: zip=${zip}, APPID=${apiKey}`)
-    return api.get('', {zip: zip, APPID: apiKey});
+    return api.get('weather', {zip: zip, APPID: apiKey});
+  }
+
+  const getForecast = (zip) => {
+    const apiKey = AppConfig.apiKey;
+    console.log(`Api.getForecast: zipcode=${zip}, APPID=${apiKey}`)
+    return api.get('forecast', {zip: zip, APPID: apiKey})
   }
 
   // ------
@@ -61,7 +67,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     getRoot,
     getRate,
     getUser,
-    getCurrentWeather
+    getCurrentWeather,
+    getForecast
   }
 }
 
