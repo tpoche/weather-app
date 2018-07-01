@@ -23,7 +23,9 @@ class HomeScreen extends Component {
             <Text>{`High: ${high}º`}</Text>
             <Text>{`Low: ${low}º`}</Text>
           </View>
-          <WeatherIcon condition={condition} size={250} color='black' />          
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <WeatherIcon condition={condition} size={250} />
+          </View>          
           <Text style={styles.sectionTitle}>{`${current}ºF`}</Text>
           <View style={{paddingTop: 30}}>
             <Button title="Forecast" onPress={this.onPressForecast.bind(this)} />

@@ -59,8 +59,8 @@ const ApplicationStyles = {
   },
   groupContainer: {
     margin: Metrics.smallMargin,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
   sectionTitle: {

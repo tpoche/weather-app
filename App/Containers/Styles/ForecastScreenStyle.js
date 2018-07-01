@@ -12,11 +12,13 @@ export default StyleSheet.create({
   cellTitle: {
     ...Fonts.style.description,
     color: Colors.coal,
+    textAlign: 'center'
     // marginVertical: Metrics.smallMargin,
   },
   cellSubtitle: {
     ...Fonts.style.description,
     color: Colors.charcoal,
+    textAlign: 'center'
     // marginVertical: Metrics.smallMargin,
   }
 })

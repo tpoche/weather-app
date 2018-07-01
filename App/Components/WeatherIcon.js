@@ -1,43 +1,46 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-// import styles from './Styles/WeatherIconStyle'
+import Icon from 'react-native-vector-icons/Ionicons'
+import Colors from '../Themes/Colors'
 
 export default class WeatherIcon extends Component {
   // Prop type warnings
   static propTypes = {
     condition: PropTypes.string,
     size: PropTypes.number,
-    color: PropTypes.string,
     style: PropTypes.object,
   }
-  
-  // Defaults for props
-  static defaultProps = {
-    color: 'black'
+
+  constructor() {
+    super()
+
+    this.iconColor = 'black';
   }
 
   mapCondition = (condition) => {
     console.log(`WeatherIcon: mapping condition=${condition}`);
     switch (condition) {
       case 'Clear':
-        return 'weather-sunny';
+        this.iconColor = 'orange';
+        return 'ios-sunny';
       case 'Clouds':
-        return 'weather-cloudy';
+        this.iconColor = Colors.cloud;
+        return 'ios-cloudy';
       case 'Rain':
-        return 'weather-rainy';
+        this.iconColor = Colors.babyblue;
+        return 'ios-rainy';
       default:
-        return 'weather-sunny';
+        return 'ios-sunny';
     }
   };
 
   render () {
-    const { size, color } = this.props;
-    console.log(`size=${size}, color=${color}`);
-    const name = this.mapCondition(this.props.condition);
-    console.log(`name=${name}`);
+    const { size, condition } = this.props;
+    console.log(`size=${size}, condition=${condition}`);
+    const name = this.mapCondition(condition);
+    console.log(`name=${name}, iconColor=${this.iconColor}`);
     return (
-      <Icon name={name} size={size} color={color} />
+      <Icon name={name} size={size} color={this.iconColor} />
     )
   }
 }
