@@ -7,7 +7,6 @@ import WeatherIcon from '../Components/WeatherIcon'
 import convertFromKelvin from '../Transforms/ConvertFromKelvin'
 
 import styles from './Styles/ForecastRowStyle'
-import { Colors } from '../Themes';
 
 export default class ForecastRow extends Component {
   // Prop type warnings

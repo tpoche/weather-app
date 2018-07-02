@@ -11,7 +11,8 @@ class ForecastScreen extends Component {
 
   componentDidMount () {
     // retrieve weather forecast for next 5 days
-    this.props.getForecast('70506');
+    const zip = (this.props.zip && this.props.zip.length > 0) ? this.props.zip : '70506';
+    this.props.getForecast(zip);
   }
 
   onBackPress () {
@@ -26,6 +27,8 @@ class ForecastScreen extends Component {
 
   render () {
     const list = this.props.forecastList;
+    const zip = this.props.zip;
+    console.log(`Extended forecast for zip code=${zip}`);
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.groupContainer} behavior='position'>
@@ -43,7 +46,8 @@ class ForecastScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    forecastList: state.openWeather.forecastList
+    zip: state.openWeather.zipcode,
+    forecastList: state.openWeather.forecastList,
   }
 }
 

@@ -6,15 +6,34 @@ export default StyleSheet.create({
   groupContainer: ApplicationStyles.groupContainer,
   title: {
     ...Fonts.style.normal,
-    paddingVertical: Metrics.baseMargin,
+    // paddingVertical: Metrics.baseMargin,
     color: Colors.coal,
     marginVertical: Metrics.smallMargin,
-    textAlign: 'center'
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    // height: 40
   },
   sectionTitle: {
     ...Fonts.style.headline,
     color: Colors.coal,
     alignItems: 'center',
     textAlign: 'center'
+  },
+  inputContainer: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    height: 44
+  },
+  textField: {
+    backgroundColor: 'white', 
+    borderWidth: 1, 
+    borderColor: Colors.charcoal, 
+    borderRadius: 5, 
+    width: 70,
+    height: 40,
+    textAlign: 'center',
+    //paddingHorizontal: 10,
+    marginHorizontal: 10,
   }
 })

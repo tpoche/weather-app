@@ -11,14 +11,13 @@ export default class WeatherIcon extends Component {
     style: PropTypes.object,
   }
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.iconColor = 'black';
   }
 
   mapCondition = (condition) => {
-    console.log(`WeatherIcon: mapping condition=${condition}`);
     switch (condition) {
       case 'Clear':
         this.iconColor = 'orange';
@@ -36,9 +35,7 @@ export default class WeatherIcon extends Component {
 
   render () {
     const { size, condition } = this.props;
-    console.log(`size=${size}, condition=${condition}`);
     const name = this.mapCondition(condition);
-    console.log(`name=${name}, iconColor=${this.iconColor}`);
     return (
       <Icon name={name} size={size} color={this.iconColor} />
     )
